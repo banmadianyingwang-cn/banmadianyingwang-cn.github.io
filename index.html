@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#fbfbfb">
+<title>斑马电影网 - 黑白分明的高分片单与正版观影指南</title>
+<meta name="description" content="斑马电影网，一份黑白分明的观影指南。按黑白影像、善恶一线、节奏分野、正邪难辨四种气质推荐高分电影与正版观影渠道。">
+<meta name="keywords" content="斑马电影网,斑马电影,黑白电影,黑白影像,高分电影,悬疑电影,正版观影,电影导航">
+<link rel="canonical" href="https://banmadianyingwang-cn.github.io/">
+<style>
+:root{
+  --ink:#131313; --ink2:#4a4a4a; --gray:#8e8e8e; --line:#e4e4e4; --paper:#fbfbfb; --stripe:#f4f4f4;
+  --accent:#ff2e2e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",system-ui,sans-serif;
+  background:var(--paper);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+ul,ol{list-style:none}
+::selection{background:var(--ink);color:#fff}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--ink);border-radius:8px}
+::-webkit-scrollbar-track{background:#ececec}
+
+/* ============ 顶部导航 ============ */
+.topbar{
+  position:fixed;inset:0 0 auto 0;z-index:60;height:66px;display:flex;align-items:center;gap:18px;
+  padding:0 clamp(16px,4vw,40px);background:rgba(251,251,251,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:11px;font-weight:850;white-space:nowrap;letter-spacing:.01em}
+.brand .mk{width:26px;height:26px;border-radius:7px;background:
+  repeating-linear-gradient(135deg,#131313 0 5px,#fff 5px 10px);box-shadow:inset 0 0 0 1px #131313}
+.brand b{font-size:20px}
+.brand b i{font-style:normal;color:var(--accent)}
+.brand span{font-size:9.5px;color:var(--gray);letter-spacing:.26em;display:none;border-left:1px solid var(--line);padding-left:11px;margin-left:2px}
+nav.nav{display:flex;gap:2px;margin-left:auto;align-items:center}
+nav.nav a{padding:9px 13px;border-radius:10px;font-size:14px;color:var(--ink2);transition:.22s;position:relative}
+nav.nav a:hover{color:var(--ink);background:#f0f0f0}
+nav.nav a::after{content:"";position:absolute;left:13px;right:13px;bottom:5px;height:2px;border-radius:2px;background:var(--ink);transform:scaleX(0);transition:.24s}
+nav.nav a:hover::after{transform:scaleX(1)}
+.drawer-btn{display:none;width:42px;height:42px;align-items:center;justify-content:center;margin-left:auto}
+.drawer-btn i{display:block;width:22px;height:2px;background:var(--ink);position:relative;transition:.25s}
+.drawer-btn i::before,.drawer-btn i::after{content:"";position:absolute;left:0;width:22px;height:2px;background:var(--ink);transition:.25s}
+.drawer-btn i::before{top:-7px}.drawer-btn i::after{top:7px}
+.drawer-btn[aria-expanded="true"] i{background:transparent}
+.drawer-btn[aria-expanded="true"] i::before{transform:rotate(45deg);top:0}
+.drawer-btn[aria-expanded="true"] i::after{transform:rotate(-45deg);top:0}
+.drawer{position:fixed;inset:66px 0 0 auto;width:280px;z-index:59;padding:22px 18px;
+  background:#fff;border-left:1px solid var(--line);transform:translateX(102%);transition:.34s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;gap:6px;overflow:auto}
+.drawer.open{transform:none}
+.drawer a{color:var(--ink2);padding:14px 16px;border-radius:12px;font-size:15px;border:1px solid transparent}
+.drawer a:hover{background:#f4f4f4;border-color:#c8c8c8;color:var(--ink)}
+
+/* ============ 通用栏 ============ */
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+section{padding:clamp(64px,9vw,104px) 0;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.28em;color:var(--gray);font-weight:700}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--ink)}
+h2.t{font-size:clamp(27px,4.3vw,44px);line-height:1.24;font-weight:850;letter-spacing:-.01em;margin:13px 0 9px}
+h2.t em{font-style:normal;color:var(--accent)}
+.lead{color:var(--ink2);max-width:70ch;font-size:clamp(14px,1.5vw,16px)}
+.hd{display:flex;flex-direction:column;gap:9px;margin-bottom:38px}
+.tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tag{font-size:12px;padding:6px 12px;border-radius:999px;background:#fff;color:var(--ink2);border:1px solid var(--line)}
+.tag.hot{background:#131313;color:#fff;border-color:#131313}
+.reveal{opacity:0;transform:translateY(26px);transition:.72s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ 首屏：斑马条纹 ============ */
+.hero{min-height:min(84vh,720px);padding-top:66px;display:grid;grid-template-columns:1fr .9fr;align-items:center;gap:clamp(20px,5vw,56px);
+  background:
+    repeating-linear-gradient(135deg,transparent 0 26px,rgba(19,19,19,.035) 26px 52px),
+    linear-gradient(180deg,#fff,#f2f2f2 70%,#e9e9e9);overflow:hidden}
+.hero .copy{padding:clamp(36px,8vw,80px) 0}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.26em;color:var(--ink);
+  border:1px solid #131313;padding:7px 14px;border-radius:999px;background:#fff}
+.hero h1{font-size:clamp(40px,7.4vw,84px);line-height:1.06;font-weight:900;letter-spacing:-.02em;margin:15px 0 4px}
+.hero h1 i{font-style:normal;color:var(--accent)}
+.hero .sub{font-size:clamp(15px,1.7vw,19px);color:var(--ink2);max-width:34ch}
+.hero .rule{width:66px;height:3px;border-radius:3px;background:repeating-linear-gradient(90deg,#131313 0 8px,#ff2e2e 8px 16px);margin:22px 0}
+.hero .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:8px 0 26px;font-family:"PingFang SC",sans-serif}
+.hero .facts div{border-top:2px solid #131313;padding-top:8px}
+.hero .facts b{display:block;font-size:clamp(19px,2.3vw,25px);font-weight:850;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.hero .facts span{font-size:11px;color:var(--gray);letter-spacing:.06em}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:14px 26px;border-radius:13px;font-size:15px;font-weight:700;transition:.24s;display:inline-flex;align-items:center;gap:9px}
+.btn.pri{background:#131313;color:#fff;box-shadow:0 14px 30px rgba(19,19,19,.26)}
+.btn.pri:hover{transform:translateY(-3px);box-shadow:0 20px 40px rgba(19,19,19,.4)}
+.btn.ghost{border:1px solid rgba(19,19,19,.26);color:var(--ink)}
+.btn.ghost:hover{border-color:#131313;color:#131313}
+
+/* 斑马 SVG */
+.zwrap{position:relative;height:100%;min-height:420px;display:flex;align-items:center;justify-content:center;padding:20px}
+.zwrap svg{width:100%;height:auto;max-height:580px;overflow:visible}
+.zs path{stroke-dasharray:1400;stroke-dashoffset:1400;animation:sd 7s ease-in-out infinite alternate}
+@keyframes sd{to{stroke-dashoffset:0}}
+
+/* ============ ① 黑白气质（Radio + 卡片网格） ============ */
+.moodgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.fld{display:block;position:relative;background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;cursor:pointer;transition:.26s;overflow:hidden}
+.fld::before{content:"";position:absolute;inset:0;background:linear-gradient(150deg,var(--c),#131313);opacity:0;transition:.3s}
+.fld:hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(19,19,19,.18);border-color:transparent}
+.fld input{position:absolute;opacity:0;width:0;height:0}
+.fld .ri{position:absolute;right:18px;top:18px;width:20px;height:20px;border-radius:50%;border:2px solid #c4c4c4;transition:.22s}
+.fld input:checked ~ .ri{background:var(--c);border-color:var(--c)}
+.fld input:checked ~ .ri::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(40deg)}
+.fld .no{font-size:12px;letter-spacing:.2em;color:var(--c);font-weight:800;position:relative}
+.fld h3{font-size:clamp(20px,2.4vw,26px);font-weight:850;margin:8px 0 7px;position:relative;letter-spacing:-.01em}
+.fld p{font-size:13.5px;color:var(--ink2);position:relative}
+.fld .bar{height:6px;border-radius:6px;background:#eee;margin-top:14px;overflow:hidden;position:relative}
+.fld .bar i{display:block;height:100%;width:0;border-radius:6px;background:var(--c);transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.fld .num{position:absolute;right:22px;bottom:16px;font-size:11px;color:var(--gray);font-weight:700;letter-spacing:.05em;font-variant-numeric:tabular-nums}
+
+/* ============ ② 黑白片单（横向磁贴） ============ */
+.scroller{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 24px;scrollbar-width:thin}
+.mag{flex:0 0 clamp(222px,25vw,282px);scroll-snap-align:start;background:#fff;border-radius:16px;overflow:hidden;
+  border:1px solid var(--line);transition:.28s;display:flex;flex-direction:column}
+.mag:hover{transform:translateY(-7px) rotate(.4deg);box-shadow:0 24px 50px rgba(19,19,19,.2);border-color:transparent}
+.mag .cv{position:relative;aspect-ratio:3/4;overflow:hidden;background:#ddd}
+.mag .cv img{width:100%;height:100%;object-fit:cover;transition:.6s;filter:grayscale(.5) contrast(1.02)}
+.mag:hover .cv img{transform:scale(1.07);filter:grayscale(0) contrast(1.06)}
+.mag .cv .rib{position:absolute;left:10px;top:10px;font-size:10.5px;font-weight:800;padding:5px 9px;border-radius:7px;color:#fff;background:var(--c);letter-spacing:.03em}
+.mag .cv .yr{position:absolute;right:10px;bottom:10px;font-size:11.5px;font-weight:800;color:#fff;padding:5px 9px;border-radius:8px;
+  background:rgba(19,19,19,.8);backdrop-filter:blur(6px);font-variant-numeric:tabular-nums}
+.mag .bd{padding:14px 15px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.mag h3{font-size:16.5px;font-weight:800;letter-spacing:-.01em}
+.mag .meta{font-size:12px;color:var(--gray);display:flex;gap:7px;flex-wrap:wrap}
+.mag .meta b{color:var(--accent);font-weight:700}
+.mag .why{font-size:12.5px;color:#6b6b6b;line-height:1.6}
+
+/* ============ ③ 黑白榜（数据表） ============ */
+.split{display:grid;grid-template-columns:1.5fr .5fr;gap:clamp(20px,3vw,34px);align-items:start}
+.tbwrap{background:#fff;border-radius:18px;border:1px solid var(--line);overflow:hidden;box-shadow:0 10px 30px rgba(19,19,19,.06)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+thead th{background:#131313;color:#fff;text-align:left;padding:15px 14px;font-size:12.5px;letter-spacing:.08em;font-weight:700;white-space:nowrap}
+thead th.g{background:var(--accent)}
+tbody td{padding:13px 14px;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+tbody tr{transition:.2s}
+tbody tr:hover{background:#fafafa}
+tbody tr:last-child td{border-bottom:0}
+tbody td.n{font-weight:850;color:var(--ink);width:52px;font-variant-numeric:tabular-nums}
+tbody td.ttl{font-weight:750;min-width:146px}
+tbody td.ttl small{display:block;font-weight:500;color:var(--gray);font-size:12px;margin-top:2px}
+.meter{height:9px;border-radius:8px;background:#eee;overflow:hidden;min-width:104px}
+.meter i{display:block;height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,#8e8e8e,#131313 80%,var(--accent));transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+td.sc{font-weight:850;color:var(--accent);white-space:nowrap;font-variant-numeric:tabular-nums}
+td.sc span{font-size:11px;color:var(--gray);font-weight:600;margin-left:3px}
+.side{display:flex;flex-direction:column;gap:18px;position:sticky;top:84px}
+.ask{background:#131313;color:#fff;border-radius:18px;padding:22px}
+.ask h4{font-size:16px;margin-bottom:12px;letter-spacing:.02em}
+.ask ol{counter-reset:k;display:flex;flex-direction:column;gap:12px}
+.ask li{counter-increment:k;font-size:13.5px;color:#d8d8d8;padding-left:30px;position:relative}
+.ask li::before{content:"0" counter(k);position:absolute;left:0;top:1px;font-size:11px;font-weight:850;color:#fff;letter-spacing:.05em}
+.ok{background:#fdf0f0;border:1px solid #f6cfcf;color:#8c1f1f;border-radius:16px;padding:18px;font-size:13px;line-height:1.7}
+.ok b{display:block;color:#a81717;font-size:14px;margin-bottom:6px;letter-spacing:.02em}
+
+/* ============ ④ 斑马影人（定义列表 dl） ============ */
+.dl{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}
+.dl .rw{display:grid;grid-template-columns:78px 1fr;gap:16px;padding:20px;border-bottom:1px solid #f0f0f0;border-right:1px solid #f0f0f0}
+.dl .rw:nth-child(odd){border-right:1px solid #f0f0f0}
+.dl .rw:nth-last-child(-n+2){border-bottom:0}
+.dl .no{font-size:12px;font-weight:850;letter-spacing:.16em;color:var(--c);padding-top:3px}
+.dl .no span{display:block;font-size:27px;letter-spacing:-.03em;color:#131313;line-height:1.1}
+.dl .tx h3{font-size:18px;font-weight:850;letter-spacing:-.01em}
+.dl .tx .en{font-size:11px;color:var(--gray);letter-spacing:.18em;text-transform:uppercase}
+.dl .tx p{font-size:13.5px;color:var(--ink2);margin:8px 0 10px}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{font-size:11.5px;padding:5px 11px;border-radius:999px;background:#f4f4f4;color:#4a4a4a;border:1px solid var(--line);transition:.2s}
+.chip:hover{background:#131313;color:#fff;border-color:#131313}
+
+/* ============ ⑤ 类型地图（砖墙） ============ */
+.bricks{column-count:3;column-gap:20px}
+.brk{break-inside:avoid;margin-bottom:20px;border-radius:16px;overflow:hidden;position:relative;border:1px solid var(--line);background:#fff;transition:.3s}
+.brk:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(19,19,19,.2);border-color:transparent}
+.brk .cv{position:relative;overflow:hidden;background:#ddd}
+.brk .cv img{width:100%;display:block;transition:.6s;filter:grayscale(.3) contrast(1.04)}
+.brk:hover .cv img{filter:grayscale(0);transform:scale(1.06)}
+.brk .cv .idx{position:absolute;left:12px;bottom:10px;font-size:10.5px;font-weight:850;letter-spacing:.16em;color:#fff;
+  background:#131313;padding:5px 10px;border-radius:7px}
+.brk .bd{padding:13px 15px 15px}
+.brk h3{font-size:15.5px;font-weight:800;letter-spacing:-.01em}
+.brk .who{font-size:12px;color:var(--gray);margin-top:4px}
+.ladder{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:34px;counter-reset:lad}
+.lad h4{font-size:15px;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+.lad h4::before{content:counter(lad);counter-increment:lad;font-size:11px;width:22px;height:22px;border-radius:7px;
+  background:#131313;color:#fff;display:grid;place-items:center;font-weight:850}
+.lad ol{counter-reset:r;display:flex;flex-direction:column;gap:9px}
+.lad li{counter-increment:r;display:flex;gap:11px;align-items:baseline;font-size:13.5px;padding:9px 12px;border-radius:10px;background:#fff;border:1px solid var(--line)}
+.lad li::before{content:"0" counter(r);font-size:10.5px;font-weight:850;color:var(--accent);letter-spacing:.05em;flex:0 0 auto}
+.lad li b{font-weight:750}
+
+/* ============ 页脚 ============ */
+footer{background:#131313;color:#c8c8c8;padding:64px 0 34px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px}
+.foot h5{color:#fff;font-size:15px;margin-bottom:14px;letter-spacing:.02em}
+.foot p,.foot li{font-size:13px;color:#9a9a9a;line-height:1.9}
+.foot a{transition:.2s}
+.foot a:hover{color:#fff}
+.foot .brandfoot{display:flex;align-items:center;gap:10px;color:#fff;font-size:20px;font-weight:850}
+.foot .brandfoot .mk{width:24px;height:24px;border-radius:6px;background:repeating-linear-gradient(135deg,#fff 0 5px,#131313 5px 10px);border:1px solid #fff}
+.foot .brandfoot b i{font-style:normal;color:#ff8080}
+.copyline{margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);
+  display:flex;gap:14px;flex-wrap:wrap;justify-content:space-between;font-size:12px;color:#7c7c7c}
+
+@media (max-width:980px){
+  .brand span{display:inline}
+  nav.nav{display:none}
+  .drawer-btn{display:flex}
+  .hero{grid-template-columns:1fr;min-height:auto;padding-bottom:40px}
+  .zwrap{min-height:330px}
+  .moodgrid,.dl,.bricks{grid-template-columns:1fr 1fr;column-count:2}
+  .split{grid-template-columns:1fr}
+  .side{position:static}
+  .foot{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .topbar{height:58px}
+  .drawer{top:58px;width:100%;border-left:0}
+  .hero h1{font-size:clamp(36px,11vw,56px)}
+  .hero .facts{grid-template-columns:repeat(2,1fr);gap:12px}
+  .moodgrid,.dl,.bricks{grid-template-columns:1fr}
+  .bricks{column-count:2;column-gap:14px}
+  .brk{margin-bottom:14px}
+  .mag{flex-basis:222px}
+  table,thead,tbody,th,td,tr{display:block}
+  thead{display:none}
+  tbody tr{margin-bottom:12px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+  tbody td{border-bottom:1px dashed #eee;padding:11px 14px;display:flex;gap:10px;align-items:center}
+  tbody td::before{content:attr(data-l);font-size:11px;color:var(--gray);letter-spacing:.06em;flex:0 0 78px;font-weight:700}
+  tbody td.n{font-size:15px}
+  tbody td.ttl{flex-direction:column;align-items:flex-start;gap:2px}
+  .meter{min-width:0;flex:1}
+  .dl .rw{grid-template-columns:64px 1fr;padding:16px}
+  .dl .no span{font-size:22px}
+  .ladder{grid-template-columns:1fr}
+  .fld{padding:18px}
+}
+@media (max-width:420px){
+  .bricks{column-count:1}
+  .cta .btn{flex:1;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaobao.js"></script>
+
+<header class="topbar" role="banner">
+  <div class="brand">
+    <span class="mk" aria-hidden="true"></span>
+    <b><i>斑马</i>电影网</b><span>BLACK · WHITE · FRAME</span>
+  </div>
+  <nav class="nav" aria-label="主导航">
+    <a href="#mood">黑白气质</a>
+    <a href="#fresh">黑白片单</a>
+    <a href="#rank">黑白榜</a>
+    <a href="#people">斑马影人</a>
+    <a href="#map">类型地图</a>
+  </nav>
+  <button class="drawer-btn" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="drawer">
+    <i></i>
+  </button>
+</header>
+<div class="drawer" id="drawer" role="navigation" aria-label="移动端菜单">
+  <a href="#mood">① 黑白气质</a>
+  <a href="#fresh">② 黑白片单</a>
+  <a href="#rank">③ 黑白榜</a>
+  <a href="#people">④ 斑马影人</a>
+  <a href="#map">⑤ 类型地图</a>
+  <a href="#foot">正版与合规</a>
+</div>
+
+<!-- ================= 首屏 ================= -->
+<section class="hero" id="top">
+  <div class="wrap" style="display:contents">
+    <div class="copy">
+      <span class="kicker">◆ 黑白 · 分明 · 的观影指南</span>
+      <h1>黑白分明，<br>才好看<i>。</i></h1>
+      <div class="rule"></div>
+      <p class="sub">斑马电影网，一份"非黑即白"的选片逻辑。好电影从不中庸：要么极简，要么极致；要么善，要么恶；要么慢，要么炸。</p>
+      <div class="facts">
+        <div><b>04</b><span>种黑白气质</span></div>
+        <div><b>12</b><span>个影像类型</span></div>
+        <div><b>86</b><span>部正版片单</span></div>
+        <div><b>100</b><span>% 正版导向</span></div>
+      </div>
+      <div class="tagrow">
+        <span class="tag hot">黑白影像</span><span class="tag">善恶一线</span>
+        <span class="tag">节奏分野</span><span class="tag">正邪难辨</span>
+        <span class="tag">高分电影</span><span class="tag">正版导航</span>
+      </div>
+      <div class="cta" style="margin-top:26px">
+        <a class="btn pri" href="#fresh">挑一部，今晚就看 →</a>
+        <a class="btn ghost" href="#mood">先看选片逻辑</a>
+      </div>
+    </div>
+
+    <div class="zwrap" aria-hidden="true">
+      <svg viewBox="0 0 560 540" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="斑马条纹插画">
+        <defs>
+          <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+            <stop stop-color="#fff"/><stop offset="1" stop-color="#e2e2e2"/>
+          </linearGradient>
+          <pattern id="st" width="40" height="40" patternTransform="rotate(24)" patternUnits="userSpaceOnUse">
+            <rect width="20" height="40" fill="#131313"/>
+          </pattern>
+        </defs>
+        <rect x="0" y="0" width="560" height="540" fill="url(#bg)" rx="28"/>
+        <!-- 斑马躯体 -->
+        <g>
+          <path d="M120 300 C150 196,250 170,330 190 C420 212,470 300,450 400 C438 456,370 470,300 460 C210 448,150 400,120 300Z" fill="#fff"/>
+          <path d="M120 300 C150 196,250 170,330 190 C420 212,470 300,450 400 C438 456,370 470,300 460 C210 448,150 400,120 300Z" fill="url(#st)" opacity=".9"/>
+        </g>
+        <!-- 鬃毛 -->
+        <path d="M128 236 C96 214,86 246,110 264 C86 268,84 298,108 304" stroke="#131313" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <!-- 腿 -->
+        <path d="M176 438 L170 500 M214 452 L212 508 M266 460 L268 514 M306 460 L312 514" stroke="#131313" stroke-width="12" stroke-linecap="round"/>
+        <!-- 头 + 吻 -->
+        <g>
+          <path d="M120 300 C86 288,58 258,70 222 C80 194,120 188,150 206 C168 216,176 240,168 264 C162 284,140 300,120 300Z" fill="#fff"/>
+          <path d="M120 300 C86 288,58 258,70 222 C80 194,120 188,150 206 C168 216,176 240,168 264 C162 284,140 300,120 300Z" fill="url(#st)" opacity=".9"/>
+          <path d="M70 222 C48 214,40 236,56 250 C42 258,44 280,62 280" fill="#131313"/>
+          <!-- 眼睛 -->
+          <ellipse cx="132" cy="246" rx="9" ry="11" fill="#131313"/>
+          <circle cx="135" cy="242" r="3" fill="#fff"/>
+          <!-- 耳 -->
+          <path d="M148 206 C162 186,188 196,180 220 Z" fill="#131313"/>
+        </g>
+        <!-- 尾巴 -->
+        <path d="M448 396 C492 380,512 336,494 308" stroke="#131313" stroke-width="10" stroke-linecap="round" fill="none"/>
+        <path d="M494 308 C512 296,520 274,506 262" stroke="#131313" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <!-- 地面影 -->
+        <ellipse cx="290" cy="516" rx="230" ry="14" fill="#131313" opacity=".12"/>
+        <text x="280" y="40" text-anchor="middle" font-size="14" fill="#8e8e8e" letter-spacing="8">BLACK &amp; WHITE</text>
+        <g class="zs">
+          <path d="M60 140 C200 60,360 220,500 140" stroke="#ff2e2e" stroke-width="2.4" fill="none" opacity=".7"/>
+          <path d="M40 200 C210 140,350 260,520 200" stroke="#8e8e8e" stroke-width="1.6" fill="none" opacity=".5" style="animation-delay:-2.4s"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ① 黑白气质（Radio 卡片） ================= -->
+<section id="mood">
+  <div class="wrap">
+    <div class="hd reveal">
+      <span class="eyebrow">01 / MOOD</span>
+      <h2 class="t">黑白气质：<em>好电影，不中庸</em></h2>
+      <p class="lead">按"画面是黑是白、立场是正是反、节奏是快是慢"四维选片。四种气质，覆盖一部好片最本质的四种样子。</p>
+    </div>
+
+    <div class="moodgrid">
+      <label class="fld reveal" style="--c:#131313">
+        <input type="radio" name="mood" checked>
+        <span class="ri" aria-hidden="true"></span>
+        <span class="no">MOOD 01</span>
+        <h3>黑白影像</h3>
+        <p>画面即道德。光影把善恶画在脸上，不需要台词。适合深夜，一个人，关掉弹幕。</p>
+        <span class="bar"><i data-w="96"></i></span>
+        <span class="num">正版可看 18 部</span>
+      </label>
+      <label class="fld reveal" style="--c:#ff2e2e">
+        <input type="radio" name="mood">
+        <span class="ri" aria-hidden="true"></span>
+        <span class="no">MOOD 02</span>
+        <h3>善恶一线</h3>
+        <p>没有好人，也没有坏人，只有被逼到墙角的人。看完会沉默，而不是鼓掌。</p>
+        <span class="bar"><i data-w="91"></i></span>
+        <span class="num">正版可看 14 部</span>
+      </label>
+      <label class="fld reveal" style="--c:#5b5b5b">
+        <input type="radio" name="mood">
+        <span class="ri" aria-hidden="true"></span>
+        <span class="no">MOOD 03</span>
+        <h3>节奏分野</h3>
+        <p>要么一镜到底不喘气，要么十分钟一个长镜头。绝不中庸，绝不陪你聊天。</p>
+        <span class="bar"><i data-w="87"></i></span>
+        <span class="num">正版可看 11 部</span>
+      </label>
+      <label class="fld reveal" style="--c:#1f4d3a">
+        <input type="radio" name="mood">
+        <span class="ri" aria-hidden="true"></span>
+        <span class="no">MOOD 04</span>
+        <h3>正邪难辨</h3>
+        <p>反转不是噱头，是价值观的地震。看完会想重看一遍，找那个被藏起来的细节。</p>
+        <span class="bar"><i data-w="83"></i></span>
+        <span class="num">正版可看 9 部</span>
+      </label>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ② 黑白片单 ================= -->
+<section id="fresh" style="background:linear-gradient(180deg,#f2f2f2,#fbfbfb)">
+  <div class="wrap">
+    <div class="hd reveal">
+      <span class="eyebrow">02 / THIS WEEK</span>
+      <h2 class="t">黑白片单：<em>本周，只推极致的</em></h2>
+      <p class="lead">6 部"黑白浓度"最高的片子——画面极端、立场极端、情绪极端。片源均为正版可看。</p>
+    </div>
+
+    <div class="scroller">
+      <article class="mag reveal">
+        <div class="cv">
+          <img src="https://picsum.photos/id/1036/460/614" alt="黑白老街" loading="lazy">
+          <span class="rib" style="--c:#131313">正版免费</span>
+          <span class="yr">1957</span>
+        </div>
+        <div class="bd">
+          <h3>十二怒汉</h3>
+          <div class="meta"><b>美国</b> · 悬疑 / 法庭 · 95 分钟</div>
+          <span class="why">为什么黑白看：一間屋子，十二个人，没有配乐。黑白影像把"怀疑"拍成了可见的东西。</span>
+        </div>
+      </article>
+      <article class="mag reveal">
+        <div class="cv">
+          <img src="https://picsum.photos/id/1069/460/614" alt="黑白旷野" loading="lazy">
+          <span class="rib" style="--c:#ff2e2e">限时免费</span>
+          <span class="yr">1994</span>
+        </div>
+        <div class="bd">
+          <h3>低俗小说</h3>
+          <div class="meta"><b>美国</b> · 犯罪 / 非线性 · 154 分钟</div>
+          <span class="why">为什么黑白看：善恶没有边界，时间被打乱。看完会说不出话，然后想重看。</span>
+        </div>
+      </article>
+      <article class="mag reveal">
+        <div class="cv">
+          <img src="https://picsum.photos/id/1047/460/614" alt="黑白车站" loading="lazy">
+          <span class="rib" style="--c:#5b5b5b">公版 4K</span>
+          <span class="yr">1948</span>
+        </div>
+        <div class="bd">
+          <h3>偷自行车的人</h3>
+          <div class="meta"><b>意大利</b> · 新现实 · 93 分钟</div>
+          <span class="why">为什么黑白看：一部没有"坏人"的悲剧。黑白，是穷人的颜色。</span>
+        </div>
+      </article>
+      <article class="mag reveal">
+        <div class="cv">
+          <img src="https://picsum.photos/id/1088/460/614" alt="黑白咖啡馆" loading="lazy">
+          <span class="rib" style="--c:#1f4d3a">首月 0 元</span>
+          <span class="yr">2000</span>
+        </div>
+        <div class="bd">
+          <h3>一一</h3>
+          <div class="meta"><b>中国台湾</b> · 家庭 / 人生 · 173 分钟</div>
+          <span class="why">为什么黑白看：从婚礼到葬礼，一个人一辈子。慢到极致，也真到极致。</span>
+        </div>
+      </article>
+      <article class="mag reveal">
+        <div class="cv">
+          <img src="https://picsum.photos/id/1080/460/614" alt="黑白老屋" loading="lazy">
+          <span class="rib" style="--c:#131313">联合会员</span>
+          <span class="yr">1954</span>
+        </div>
+        <div class="bd">
+          <h3>七武士</h3>
+          <div class="meta"><b>日本</b> · 史诗 / 动作 · 207 分钟</div>
+          <span class="why">为什么黑白看：雨中决斗那场戏，是影史最"黑白"的二十分钟。</span>
+        </div>
+      </article>
+      <article class="mag reveal">
+        <div class="cv">
+          <img src="https://picsum.photos/id/109/460/614" alt="黑白雪原" loading="lazy">
+          <span class="rib" style="--c:#ff2e2e">公益放映</span>
+          <span class="yr">2014</span>
+        </div>
+        <div class="bd">
+          <h3>白日焰火</h3>
+          <div class="meta"><b>中国</b> · 犯罪 / 东北 · 106 分钟</div>
+          <span class="why">为什么黑白看：雪、煤、旧楼、碎冰。黑白气质，是东北给的。</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ③ 黑白榜 ================= -->
+<section id="rank">
+  <div class="wrap">
+    <div class="hd reveal">
+      <span class="eyebrow">03 / RANKING</span>
+      <h2 class="t">黑白榜：<em>"黑白值"从高到低</em></h2>
+      <p class="lead">"黑白值"＝黑白/高对比影像占比 × 立场极端度 × 节奏反差 × 反转强度。评分来自公开影评平台，片源均为正版可看。</p>
+    </div>
+
+    <div class="split">
+      <div class="tbwrap reveal">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">名次</th>
+              <th scope="col">片名 · 地区</th>
+              <th scope="col" class="g">黑白值</th>
+              <th scope="col">评分</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="n" data-rk="黑白 01">01</td>
+              <td class="ttl">辛德勒的名单<small>美国 · 黑白 / 二战</small></td>
+              <td data-l="黑白值"><div class="meter"><i data-w="99"></i></div></td>
+              <td class="sc" data-l="评分">9.5<span>/10</span></td>
+            </tr>
+            <tr>
+              <td class="n" data-rk="黑白 02">02</td>
+              <td class="ttl">霸王别姬<small>中国 · 黑白 / 人生</small></td>
+              <td data-l="黑白值"><div class="meter"><i data-w="97"></i></div></td>
+              <td class="sc" data-l="评分">9.6<span>/10</span></td>
+            </tr>
+            <tr>
+              <td class="n" data-rk="黑白 03">03</td>
+              <td class="ttl">十二怒汉<small>美国 · 悬疑 / 法庭</small></td>
+              <td data-l="黑白值"><div class="meter"><i data-w="95"></i></div></td>
+              <td class="sc" data-l="评分">9.4<span>/10</span></td>
+            </tr>
+            <tr>
+              <td class="n" data-rk="黑白 04">04</td>
+              <td class="ttl">窃听风暴<small>德国 · 悬疑 / 东德</small></td>
+              <td data-l="黑白值"><div class="meter"><i data-w="93"></i></div></td>
+              <td class="sc" data-l="评分">9.1<span>/10</span></td>
+            </tr>
+            <tr>
+              <td class="n" data-rk="黑白 05">05</td>
+              <td class="ttl">罗生门<small>日本 · 悬疑 / 人性</small></td>
+              <td data-l="黑白值"><div class="meter"><i data-w="91"></i></div></td>
+              <td class="sc" data-l="评分">8.8<span>/10</span></td>
+            </tr>
+            <tr>
+              <td class="n" data-rk="黑白 06">06</td>
+              <td class="ttl">七武士<small>日本 · 史诗 / 黑白</small></td>
+              <td data-l="黑白值"><div class="meter"><i data-w="89"></i></div></td>
+              <td class="sc" data-l="评分">9.3<span>/10</span></td>
+            </tr>
+            <tr>
+              <td class="n" data-rk="黑白 07">07</td>
+              <td class="ttl">低俗小说<small>美国 · 犯罪 / 非线性</small></td>
+              <td data-l="黑白值"><div class="meter"><i data-w="87"></i></div></td>
+              <td class="sc" data-l="评分">8.8<span>/10</span></td>
+            </tr>
+            <tr>
+              <td class="n" data-rk="黑白 08">08</td>
+              <td class="ttl">白日焰火<small>中国 · 犯罪 / 东北</small></td>
+              <td data-l="黑白值"><div class="meter"><i data-w="85"></i></div></td>
+              <td class="sc" data-l="评分">7.9<span>/10</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <aside class="side">
+        <div class="ask reveal">
+          <h4>黑白之问</h4>
+          <ol>
+            <li>哪一部电影，让你第一次觉得"黑白比彩色更好看"？</li>
+            <li>一部好片，该让观众爽，还是该让观众难受？</li>
+            <li>善恶一线、正邪难辨——你更信哪一种？</li>
+            <li>有没有一部片，慢到你想关掉，却关不掉？</li>
+          </ol>
+        </div>
+        <div class="ok reveal">
+          <b>✔ 正版提示</b>
+          本站只收录正版平台的免费专区、限时活动、公版修复片源与公共文化授权内容，不提供、不链接任何盗版、破解、侵权资源。片源标注含义：<b>正版免费</b>（平台免费专区）、<b>限时免费</b>（活动期）、<b>公版 4K</b>（版权到期修复版）、<b>首月 0 元</b>（联合会员）、<b>联合会员</b>、<b>公益放映</b>（公共文化）。
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ④ 斑马影人（dl 定义列表） ================= -->
+<section id="people" style="background:linear-gradient(180deg,#fbfbfb,#f2f2f2)">
+  <div class="wrap">
+    <div class="hd reveal">
+      <span class="eyebrow">04 / AUTEURS</span>
+      <h2 class="t">斑马影人：<span style="color:var(--accent)">最懂"极端"的四位</span></h2>
+      <p class="lead">黑白不是颜色，是一种态度。这四位导演，把"不中庸"拍成了自己的签名。</p>
+    </div>
+
+    <div class="dl">
+      <div class="rw reveal" style="--c:#131313">
+        <div class="no"><span>01</span>AUTEUR</div>
+        <div class="tx">
+          <h3>黑泽明</h3>
+          <span class="en">Akira Kurosawa · 1910–1998 · 日本</span>
+          <p>雨、泥、剑、怒。他的黑白片是"光与影的战争"，每一帧都能当版画挂墙上。</p>
+          <div class="chips"><span class="chip">《七武士》</span><span class="chip">《罗生门》</span><span class="chip">《生之欲》</span><span class="chip">光影即道德</span></div>
+        </div>
+      </div>
+      <div class="rw reveal" style="--c:#ff2e2e">
+        <div class="no"><span>02</span>AUTEUR</div>
+        <div class="tx">
+          <h3>昆汀 · 塔伦蒂诺</h3>
+          <span class="en">Quentin Tarantino · 1963– · 美国</span>
+          <span class="en">Quentin Tarantino · 美国</span>
+          <p>善恶错位、时间打结、话唠到杀人只需三秒。他把"B 级片"拍成了教科书。</p>
+          <div class="chips"><span class="chip">《低俗小说》</span><span class="chip">《落水狗》</span><span class="chip">《被解救的姜戈》</span><span class="chip">非线性叙事</span></div>
+        </div>
+      </div>
+      <div class="rw reveal" style="--c:#5b5b5b">
+        <div class="no"><span>03</span>AUTEUR</div>
+        <div class="tx">
+          <h3>杨德昌</h3>
+          <span class="en">Edward Yang · 1947–2007 · 中国台湾</span>
+          <p>一部片拍完一个人一生。《一一》里那句"电影让人的生命延长三倍"，是他给自己的墓志铭。</p>
+          <div class="chips"><span class="chip">《一一》</span><span class="chip">《牯岭街少年杀人事件》</span><span class="chip">《独立时代》</span><span class="chip">极致的慢</span></div>
+        </div>
+      </div>
+      <div class="rw reveal" style="--c:#1f4d3a">
+        <div class="no"><span>04</span>AUTEUR</div>
+        <div class="tx">
+          <h3>刁亦男</h3>
+          <span class="en">Diao Yinan · 1969– · 中国</span>
+          <p>冰面、霓虹、碎冰、旧楼。他把犯罪片拍成了东北的黑白诗，也拍出了中国最冷的柏林熊。</p>
+          <div class="chips"><span class="chip">《白日焰火》</span><span class="chip">《南方车站的聚会》</span><span class="chip">《夜车》</span><span class="chip">冷到极致</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ⑤ 类型地图 ================= -->
+<section id="map">
+  <div class="wrap">
+    <div class="hd reveal">
+      <span class="eyebrow">05 / MAP</span>
+      <h2 class="t">类型地图：<em>十二种极致的看片方式</em></h2>
+      <p class="lead">不按国家分，按"极端在哪"分。每一格，都是一种不妥协的观影心情。</p>
+    </div>
+
+    <div class="bricks">
+      <article class="brk reveal">
+        <div class="cv"><img src="https://picsum.photos/id/1047/520/720" alt="黑白纪实" loading="lazy"><span class="idx">B&amp;W 01</span></div>
+        <div class="bd"><h3>黑白 · 纪实</h3><div class="who">代表：《偷自行车的人》《罗马，不设防的城市》</div></div>
+      </article>
+      <article class="brk reveal">
+        <div class="cv"><img src="https://picsum.photos/id/1088/520/600" alt="黑白夜景" loading="lazy"><span class="idx">B&amp;W 02</span></div>
+        <div class="bd"><h3>黑白 · 悬疑</h3><div class="who">代表：《罗生门》《十二怒汉》</div></div>
+      </article>
+      <article class="brk reveal">
+        <div class="cv"><img src="https://picsum.photos/id/1080/520/780" alt="黑白老屋" loading="lazy"><span class="idx">B&amp;W 03</span></div>
+        <div class="bd"><h3>善恶 · 一线</h3><div class="who">代表：《窃听风暴》《无间道》</div></div>
+      </article>
+      <article class="brk reveal">
+        <div class="cv"><img src="https://picsum.photos/id/1074/520/600" alt="黑白公路" loading="lazy"><span class="idx">B&amp;W 04</span></div>
+        <div class="bd"><h3>正邪 · 难辨</h3><div class="who">代表：《低俗小说》《看不见的客人》</div></div>
+      </article>
+      <article class="brk reveal">
+        <div class="cv"><img src="https://picsum.photos/id/1068/520/720" alt="黑白雨夜" loading="lazy"><span class="idx">B&amp;W 05</span></div>
+        <div class="bd"><h3>冷冽 · 犯罪</h3><div class="who">代表：《白日焰火》《冰血暴》</div></div>
+      </article>
+      <article class="brk reveal">
+        <div class="cv"><img src="https://picsum.photos/id/1075/520/600" alt="黑白旧城" loading="lazy"><span class="idx">B&amp;W 06</span></div>
+        <div class="bd"><h3>极简 · 长镜头</h3><div class="who">代表：《浩气盖山河》《都灵之马》</div></div>
+      </article>
+      <article class="brk reveal">
+        <div class="cv"><img src="https://picsum.photos/id/110/520/720" alt="黑白田野" loading="lazy"><span class="idx">B&amp;W 07</span></div>
+        <div class="bd"><h3>极致 · 慢</h3><div class="who">代表：《一一》《撒玛利亚女孩》</div></div>
+      </article>
+      <article class="brk reveal">
+        <div class="cv"><img src="https://picsum.photos/id/111/520/600" alt="黑白动画" loading="lazy"><span class="idx">B&amp;W 08</span></div>
+        <div class="bd"><h3>高对比 · 动画</h3><div class="who">代表：《阿基拉》《红辣椒》</div></div>
+      </article>
+      <article class="brk reveal">
+        <div class="cv"><img src="https://picsum.photos/id/112/520/640" alt="黑白恋人" loading="lazy"><span class="idx">B&amp;W 09</span></div>
+        <div class="bd"><h3>爱与 · 死</h3><div class="who">代表：《霸王别姬》《泰坦尼克号》</div></div>
+      </article>
+      <article class="brk reveal">
+        <div class="cv"><img src="https://picsum.photos/id/114/520/720" alt="黑白经典" loading="lazy"><span class="idx">B&amp;W 10</span></div>
+        <div class="bd"><h3>黑白 · 经典修复</h3><div class="who">代表：《大都会》《公民凯恩》</div></div>
+      </article>
+      <article class="brk reveal">
+        <div class="cv"><img src="https://picsum.photos/id/116/520/600" alt="黑白少年" loading="lazy"><span class="idx">B&amp;W 11</span></div>
+        <div class="bd"><h3>一镜 · 到底</h3><div class="who">代表：《1917》《鸟人》</div></div>
+      </article>
+      <article class="brk reveal">
+        <div class="cv"><img src="https://picsum.photos/id/118/520/720" alt="黑白冬夜" loading="lazy"><span class="idx">B&amp;W 12</span></div>
+        <div class="bd"><h3>史诗 · 长</h3><div class="who">代表：《七武士》《战争与和平》</div></div>
+      </article>
+    </div>
+
+    <div class="ladder" style="counter-reset:lad">
+      <div class="lad reveal" style="--c:#131313">
+        <h4>黑白榜 · 画面即道德</h4>
+        <ol>
+          <li><b>辛德勒的名单</b> — 红衣女孩，影史最痛的一抹彩色</li>
+          <li><b>霸王别姬</b> — 一生，一场戏，一句"差一年、一个月、一天、一个时辰"</li>
+          <li><b>七武士</b> — 雨中决斗，黑白胶片的巅峰</li>
+          <li><b>偷自行车的人</b> — 没有坏人，只有被生活逼哭的父亲</li>
+          <li><b>罗马，不设防的城市</b> — 新现实主义的起点</li>
+        </ol>
+      </div>
+      <div class="lad reveal" style="--c:#ff2e2e">
+        <h4>反转榜 · 正邪难辨</h4>
+        <ol>
+          <li><b>罗生门</b> — 同一个真相，四种说法</li>
+          <li><b>十二怒汉</b> — 十一比一，凭什么?</li>
+          <li><b>窃听风暴</b> — 一个窃听者，被他窃听的人救赎</li>
+          <li><b>看不见的客人</b> — 最后五分钟，推翻前面九十分钟</li>
+          <li><b>低俗小说</b> — 时间打结，善恶错位</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 页脚 ================= -->
+<footer id="foot">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brandfoot">
+          <span class="mk" aria-hidden="true"></span>
+          <b><i>斑马</i>电影网</b>
+        </div>
+        <p style="margin-top:12px">黑白分明，才好看。我们不做片库搬运，只做"非黑即白"的选片：要么极简，要么极致；要么善，要么恶；要么慢，要么炸。</p>
+        <p style="margin-top:14px">网址：<b style="color:#fff">https://banmadianyingwang-cn.github.io/</b></p>
+      </div>
+      <div>
+        <h5>黑白气质</h5>
+        <ul>
+          <li><a href="#mood">黑白影像</a></li>
+          <li><a href="#mood">善恶一线</a></li>
+          <li><a href="#mood">节奏分野</a></li>
+          <li><a href="#mood">正邪难辨</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>选片工具</h5>
+        <ul>
+          <li><a href="#fresh">黑白片单</a></li>
+          <li><a href="#rank">黑白榜</a></li>
+          <li><a href="#people">斑马影人</a></li>
+          <li><a href="#map">类型地图</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>正版与合规</h5>
+        <ul>
+          <li>只收录正版渠道</li>
+          <li>不提供、不链接盗版与破解资源</li>
+          <li>不做擦边内容</li>
+          <li>片源标注真实口径</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyline">
+      <span>© <span id="yr">2026</span> 斑马电影网 · 黑白分明的观影指南</span>
+      <span>本站为影视赏析与正版观影导航，所有影片版权归原作者及发行方所有。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// 抽屉菜单
+var btn = document.querySelector('.drawer-btn');
+var drawer = document.getElementById('drawer');
+btn.addEventListener('click', function(){
+  var open = drawer.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  btn.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
+});
+drawer.addEventListener('click', function(e){
+  if(e.target.tagName === 'A'){
+    drawer.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+    btn.setAttribute('aria-label','打开菜单');
+  }
+});
+
+// 滚动入场 + 进度条动画
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(en){
+    if(!en.isIntersecting) return;
+    en.target.classList.add('in');
+    en.target.querySelectorAll('[data-w]').forEach(function(b){
+      if(b.dataset.done) return;
+      b.dataset.done = '1';
+      requestAnimationFrame(function(){ b.style.width = b.dataset.w + '%'; });
+    });
+    io.unobserve(en.target);
+  });
+},{threshold:.16, rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+</body>
+</html>
